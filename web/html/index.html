@@ -252,46 +252,40 @@
 
     </script>
     <style>
-      .iframe-container {
-  overflow: hidden;
-  padding-top: 56.25%;
-  position: relative;
-}
- 
-.iframe-container iframe {
-   border: 0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
-}
-.t90 {
-  height: 90%;
-}
-.row {
-  padding-top: 5px;
-}
+        .iframe-container {
+            overflow: hidden;
+            padding-top: 56.25%;
+            position: relative;
+        }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  width: 15rem;
-  height: 180px;
-  overflow-y: scroll;
-}
+        .iframe-container iframe {
+            border: 0;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
 
-li {
-  display: flex;
-}
+        .t90 {
+            height: 90%;
+        }
 
-li button {
-  background: white;
-  color: red;
-  margin-right: .5rem;
-  border-radius: 10px;
-  border: none;
-}
+        ul#historyList {
+            height: 180px;
+        }
+
+        ul#historyList li {
+            display: flex;
+        }
+
+        ul#historyList li button {
+            background: white;
+            color: red;
+            margin-right: .5rem;
+            border-radius: 10px;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -301,84 +295,118 @@ li button {
     <div id="fingerprintModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Server fingerprint</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="acceptFingerprint(false);">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div id="fingerprintMsg" class="modal-body">
-                
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal"   onclick="acceptFingerprint(true);">Yes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="acceptFingerprint(false);">No</button>
-              </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Server fingerprint</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="acceptFingerprint(false);">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="fingerprintMsg" class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="acceptFingerprint(true);">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="acceptFingerprint(false);">No</button>
+                </div>
             </div>
-          </div>
         </div>
-      
-        <div id="reconnectModal" class="modal" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
+    </div>
+
+
+    <div id="reconnectModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Connection lost</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="reconnect(false);">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div id="connLostMsg" class="modal-body">
-                  The connection to your server was interrupted.
-                  Do you want to reconnect?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal"   onclick="reconnect(true);">Yes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reconnect(false);">No</button>
-              </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Connection lost</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="reconnect(false);">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="connLostMsg" class="modal-body">
+                    The connection to your server was interrupted.
+                    Do you want to reconnect?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="reconnect(true);">Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="reconnect(false);">No</button>
+                </div>
             </div>
-          </div>
         </div>
-      
-    <div class="container-fluid" > 
-      <div class="row" >  
+    </div>
+
+    <div class="container-fluid">
+
+        <header class="d-flex flex-wrap py-3 mb-4 border-bottom">
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            </ul>
+        </header>
+
+        <!--Connection credentials part-->
+        <div id="conPan" class="row justify-content-around my-md-4">
+            <div class="col-md-8 align-self-center">
+                <div class="card shadow-lg p-md-2">
+                    <div class="card-body">
+                        <h4 class="card-title">Connection credentials</h4>
+                        <form>
+                            <div class="row">
+                                <div class="input-group mb-1">
+                                    <input id="hostInp" type="text" placeholder="Host to Connect" class="form-control col-8" value="testssh" required="" tabindex="1">
+                                    <input id="portInp" type="number" placeholder="Port" class="form-control col-2" value="22" required="" tabindex="2">
+                                    <label title="If checked then connection is not proxied through the websocket proxy of ssheasy, but it goes directly to the provided host and port. On the provided addrees a websocket proxy is expected to listen. Useful if you have your own proxy setup (like websockify or something similar)."
+                                           class="col-2">
+                                        <input id="bypassProxyInp" type="checkbox" tabindex="3"/> Bypass proxy
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group mb-1">
+                                    <input id="usrInp" type="text" placeholder="User" class="form-control col-5" value="root" required="" tabindex="4">
+                                    <input id="passInp" type="password" placeholder="Password or Passphrase" class="form-control col-5" value="root" required="" tabindex="5">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-group mb-1">
+                                    <textarea id="pkInp" rows=3 placeholder="Private Key" class="form-control col-8"></textarea>
+                                    <label class="btn btn-link col-2">
+                                        Select key file <input id="pkFile" type="file" hidden>
+                                    </label>
+                                </div>
+                                <button id="conBtn" type="button" class="btn btn-primary col-12" tabindex="6"
+                                        onclick="$('#conBtn').prop('disabled',true);showMsg('Connecting...');initConnection(term.rows, term.cols,$('#hostInp').val(),Number($('#portInp').val()),$('#usrInp').val(),$('#passInp').val(),$('#pkInp').val(), $('#bypassProxyInp').is(':checked'), false);">
+                                    Connect
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Connection history part-->
+            <div class="col-md-3 align-self-md-center">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">Connection history</h5>
+                        <div id="historyListContainer">
+                            <ul id="historyList" class="overflow-auto p-0 w-100 list-unstyled"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Connection alert part-->
         <div class="row">
-          <div class="col-12">
-              <div id="msg" class="alert alert-primary" role="alert"></div>
-              <div id="errMsg" class="alert alert-danger" role="alert">  </div>
-          </div>
-      </div>
-        </div>
-        <div id="conPan" class="row" >  
-        <div  class="container col-8 align-self-center" > 
-          <div class="row" >
-            <input id="hostInp" type="text" placeholder="Host to Connect" class="form-control col-8" value="testssh">
-            <input id="portInp" type="number" placeholder="Port" class="form-control col-2" value="22">
-            <label title="If checked then connection is not proxied through the websocket proxy of ssheasy, but it goes directly to the provided host and port. On the provided addrees a websocket proxy is expected to listen. Useful if you have your own proxy setup (like websockify or something similar)." class="col-2">
-              <input id="bypassProxyInp" type="checkbox" /> Bypass proxy
-            </label>
-          </div>
-          <div class="row">
-              <input id="usrInp" type="text" placeholder="User" class="form-control col-5" value="root">
-              <input id="passInp" type="password" placeholder="Password or Passphrase" class="form-control col-5" value="root">
-          </div>
-          <div class="row">
-            <textarea id="pkInp" rows=1 placeholder="Private Key" class="form-control col-7"></textarea>
-            <label class="btn btn-link col-2">
-                Select key file <input id="pkFile" type="file" hidden>
-            </label>
-            <button id="conBtn" type="button" class="btn btn-primary col-3" 
-              onclick="$('#conBtn').prop('disabled',true);showMsg('Connecting...');initConnection(term.rows, term.cols,$('#hostInp').val(),Number($('#portInp').val()),$('#usrInp').val(),$('#passInp').val(),$('#pkInp').val(), $('#bypassProxyInp').is(':checked'), false);">Connect</button>
-          </div>       
-        </div>
-        <div class="col-3">
-          <div id="historyListContainer">
-            <ul id="historyList"></ul>
-          </div>
-        </div>
-      </div>
-      <div id="termContainer" class="container-fluid d-flex flex-column">
-      <div class="row flex-fill"> 
-        <div id="terminal" class="col d-flex flex-column t90">
+            <div class="row">
+                <div class="col-12">
+                    <div id="msg" class="alert alert-primary" role="alert"></div>
+                    <div id="errMsg" class="alert alert-danger" role="alert"></div>
+                </div>
+            </div>
         </div>
 
         <div id="termContainer" class="d-flex flex-column shadow">
@@ -426,12 +454,14 @@ li button {
         </footer>
 
     </div>
-   
-   <script>
-      var term;
-      var searchAddon;
-      var serializeAddon;
-      function initXTerm() {
+</main>
+
+<script>
+    var term;
+    var searchAddon;
+    var serializeAddon;
+
+    function initXTerm() {
         term = new Terminal();
         term.loadAddon(new WebLinksAddon.WebLinksAddon());
         const fitAddon = new FitAddon.FitAddon();
@@ -458,9 +488,9 @@ li button {
         term.write('\n\r');
         fitAddon.fit();
         const resizeObserver = new ResizeObserver((entries) => {
-          fitAddon.fit();
-          changeWindowSize(term.rows, term.cols);
-          console.log("Size changed",term.rows, term.cols);
+            fitAddon.fit();
+            changeWindowSize(term.rows, term.cols);
+            console.log("Size changed", term.rows, term.cols);
         });
         resizeObserver.observe(document.getElementById('terminal'));
     }
